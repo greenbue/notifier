@@ -3,16 +3,41 @@ import logo from './logo.svg';
 import './app.css';
 
 class App extends Component {
+  componentDidMount() {
+    const notification_after_mount = {
+      title: 'Electron App Ready',
+      body: 'Your electron app is ready. Click on the spinning logo.'
+    }
+
+    const notification_after_click = {
+      title: 'Logo Clicked',
+      body: 'You clicked the logo.'
+    }
+
+    const notificationButton = document.getElementById('notif')
+
+    // new window.Notification(notification_after_mount.title, notification_after_mount)
+
+    notificationButton.addEventListener('click', function () {
+      const myNotification = new window.Notification(notification_after_click.title, notification_after_click)
+    })
+  }
+
   render() {
 
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <a id='notif'><img src={logo} className="App-logo" alt="logo" /></a>
           <h2>Welcome to React-Electron</h2>
         </div>
         <p className="App-intro">
           This was created using create-react-app and has Electron dependencies so that it can easily be transferred to Electron later.
+        </p>
+        <p>
+          Node {window.process.versions.node},
+          Chrome {window.process.versions.chrome},
+          and Electron {window.process.versions.electron}.
         </p>
       </div>
     );
