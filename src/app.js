@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import axios from 'axios'
 import './app.css';
 
 class App extends Component {
@@ -19,7 +20,25 @@ class App extends Component {
     // new window.Notification(notification_after_mount.title, notification_after_mount)
 
     notificationButton.addEventListener('click', function () {
-      const myNotification = new window.Notification(notification_after_click.title, notification_after_click)
+      let myInit = {
+        method: 'GET',
+        headers: {
+          "Authorization": "Token token=_",
+        },
+        mode: 'no-cors',
+        cache: 'default',
+        credentials: 'include',
+      };
+
+      console.log(myInit)
+
+      let myRequest = new Request("url_goes_here", myInit);
+
+      fetch(myRequest).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error.message);
+      });
     })
   }
 
