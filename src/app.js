@@ -17,9 +17,10 @@ class App extends Component {
 
     const notificationButton = document.getElementById('notif')
 
-    // new window.Notification(notification_after_mount.title, notification_after_mount)
+    new window.Notification(notification_after_mount.title, notification_after_mount)
 
     notificationButton.addEventListener('click', function () {
+      const myNotification = new window.Notification(notification_after_click.title, notification_after_click)
       let myInit = {
         method: 'GET',
         headers: {
